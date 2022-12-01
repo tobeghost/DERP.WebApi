@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using DERP.WebApi.Infrastructure.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -17,6 +18,8 @@ public class CommonStartup : IBaseStartup
     
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSettings();
+        
         services.AddLocalization();
 
         services.Configure<RequestLocalizationOptions>(options =>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DERP.Services.Abstract;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,5 +40,19 @@ public static class ServiceCollectionExtentions
         mvcBuilder.AddControllersAsServices();
 
         return mvcBuilder;
+    }
+    
+    public static void AddSettings(this IServiceCollection services)
+    {
+        var settings = TypeFinder.FindClassesOfType<ISettings>();
+        foreach (var setting in settings)
+        {
+            services.AddScoped(setting.GetType(), (x) =>
+            {
+                var type = setting.GetType();
+                var settingService = x.GetRequiredService<ISettingService>();
+                return settingService.LoadSetting(type);
+            });
+        }
     }
 }

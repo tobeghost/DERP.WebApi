@@ -22,7 +22,9 @@ public class ApplicationStartup : IBaseStartup
             return mongoContext;
         });
 
-        services.AddSingleton<IAccountService, AccountService>();
+        services.AddSingleton<ICustomerService, CustomerService>();
+        services.AddSingleton<IEncryptionService, EncryptionService>();
+        services.AddSingleton<ISettingService, SettingService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment)

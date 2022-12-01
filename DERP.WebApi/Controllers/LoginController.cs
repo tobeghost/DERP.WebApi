@@ -8,17 +8,17 @@ namespace DERP.WebApi.Controllers
     [Route("login")]
     public class LoginController : ControllerBase
     {
-        private readonly IAccountService _accountService;
+        private readonly ICustomerService _customerService;
         
-        public LoginController(IAccountService accountService)
+        public LoginController(ICustomerService customerService)
         {
-            _accountService = accountService;
+            _customerService = customerService;
         }
 
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn()
         {
-            _accountService.Create();
+            await _customerService.ValidateCustomer("", "");
             
             await Task.Delay(1000);
             return Ok();

@@ -16,5 +16,8 @@ public class DerpContext
 
     public IMongoDatabase Database => _database;
 
-    public IMongoCollection<Account> Account => _database.GetCollection<Account>(nameof(Account));
+    public IMongoCollection<Customer> Customer => _database.GetCollection<Customer>(nameof(Customer));
+    
+    public IMongoCollection<Setting> Setting => _database.GetCollection<Setting>(nameof(Setting));
+
 }

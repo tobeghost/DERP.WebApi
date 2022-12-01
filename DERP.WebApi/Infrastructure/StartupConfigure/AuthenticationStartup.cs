@@ -15,6 +15,8 @@ public class AuthenticationStartup : IBaseStartup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment)
     {
+        app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+        
         //configure authentication
         app.UseAuthentication();
         app.UseAuthorization();
