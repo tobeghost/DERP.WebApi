@@ -1,6 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 
-namespace DERP.Domain.Common;
+namespace DERP.WebApi.Domain.Common;
 
 public abstract partial class MongoBaseEntity
 {

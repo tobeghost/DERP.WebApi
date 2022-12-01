@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DERP.Core.Infrastructure;
+namespace DERP.WebApi.Infrastructure;
 
 public interface IBaseStartup
 {

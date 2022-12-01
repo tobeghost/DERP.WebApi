@@ -1,5 +1,4 @@
-﻿using DERP.Core.Infrastructure;
-using DERP.WebApi.Infrastructure.Extentions;
+﻿using DERP.WebApi.Infrastructure.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +8,7 @@ namespace DERP.WebApi.Infrastructure.StartupConfigure;
 
 public class MvcStartup : IBaseStartup
 {
-    public int Order => 1000;
+    public int Order => 4;
     
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {

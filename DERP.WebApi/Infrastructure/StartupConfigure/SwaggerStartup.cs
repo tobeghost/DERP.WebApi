@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using DERP.Core.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +13,7 @@ namespace DERP.WebApi.Infrastructure.StartupConfigure;
 
 public class SwaggerStartup : IBaseStartup
 {
-    public int Order => 900;
+    public int Order => 3;
     
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {

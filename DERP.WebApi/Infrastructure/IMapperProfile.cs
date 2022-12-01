@@ -1,4 +1,4 @@
-﻿namespace DERP.Core.Infrastructure;
+﻿namespace DERP.WebApi.Infrastructure;
 
 public interface IMapperProfile
 {

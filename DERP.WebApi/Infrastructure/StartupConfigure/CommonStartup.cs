@@ -1,5 +1,4 @@
-﻿using DERP.Core.Infrastructure;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +8,7 @@ namespace DERP.WebApi.Infrastructure.StartupConfigure;
 
 public class CommonStartup : IBaseStartup
 {
-    public int Order => 100;
+    public int Order => 1;
     
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {

@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using DERP.Services.Accounts;
 
 namespace DERP.WebApi.Controllers
 {
@@ -11,13 +8,18 @@ namespace DERP.WebApi.Controllers
     [Route("login")]
     public class LoginController : ControllerBase
     {
-        public LoginController()
+        private readonly IAccountService _accountService;
+        
+        public LoginController(IAccountService accountService)
         {
+            _accountService = accountService;
         }
 
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn()
         {
+            _accountService.Create();
+            
             await Task.Delay(1000);
             return Ok();
         }

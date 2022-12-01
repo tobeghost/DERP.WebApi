@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
-namespace DERP.Domain.Common;
+namespace DERP.WebApi.Domain.Common;
 
 public partial class FreeValuationType : Dictionary<string, object>
 {

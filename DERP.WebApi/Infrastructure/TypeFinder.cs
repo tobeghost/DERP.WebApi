@@ -1,4 +1,8 @@
-﻿namespace DERP.Core.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace DERP.WebApi.Infrastructure;
 
 public static class TypeFinder
 {
