@@ -1,8 +1,8 @@
-﻿using DERP.WebApi.Domain.Entities;
+﻿using DERP.Services.Abstract;
+using DERP.WebApi.Domain.Entities;
 using DERP.WebApi.Infrastructure.Context;
-using MongoDB.Driver;
 
-namespace DERP.Services.Accounts;
+namespace DERP.Services.Concrete;
 
 public class AccountService : IAccountService
 {

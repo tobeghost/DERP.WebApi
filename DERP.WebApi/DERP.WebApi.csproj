@@ -41,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services" />
+    <EmbeddedResource Update="Localize\WebApiResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebApiResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

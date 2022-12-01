@@ -1,4 +1,4 @@
-﻿namespace DERP.Services.Accounts;
+﻿namespace DERP.Services.Abstract;
 
 public interface IAccountService
 {
