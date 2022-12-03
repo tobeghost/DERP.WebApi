@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Newtonsoft.Json.Serialization;
 
@@ -41,7 +42,7 @@ public static class ServiceCollectionExtentions
 
         return mvcBuilder;
     }
-    
+
     public static void AddSettings(this IServiceCollection services)
     {
         var settings = TypeFinder.FindClassesOfType<ISettings>();
@@ -54,5 +55,11 @@ public static class ServiceCollectionExtentions
                 return settingService.LoadSetting(type);
             });
         }
+    }
+
+    public static void AddConfiguration<T>(this IServiceCollection services, IConfiguration configuration, string configurationName) where T : class, new()
+    {
+        services.Configure<T>(configuration.GetSection(configurationName));
+        services.AddSingleton(provider => provider.GetService<IOptions<T>>().Value);
     }
 }
