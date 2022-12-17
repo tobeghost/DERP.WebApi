@@ -1,4 +1,4 @@
-﻿namespace DERP.WebApi.Domain.Dtos.Customer;
+﻿namespace DERP.WebApi.Domain.Dtos.Login;
 
 public class SignInResponse
 {

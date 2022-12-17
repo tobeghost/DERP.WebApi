@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using DERP.Services.Abstract;
-using DERP.WebApi.Domain.Dtos.Customer;
+using DERP.WebApi.Domain.Dtos.Login;
 using DERP.WebApi.Infrastructure.Configuration;
 using DERP.WebApi.Jwt;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace DERP.WebApi.Controllers;
 
-[ControllerName("login")]
 public class LoginController : BaseController
 {
     private readonly ICustomerService _customerService;
@@ -24,7 +23,7 @@ public class LoginController : BaseController
     }
 
     [AllowAnonymous]
-    [HttpPost("sign-in")]
+    [HttpPost("SignIn")]
     [ProducesResponseType(typeof(SignInResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> SignIn(SignInRequest signInRequest)
     {
@@ -63,7 +62,7 @@ public class LoginController : BaseController
         return BadRequest();
     }
 
-    [HttpPost("sign-out")]
+    [HttpPost("SignOut")]
     public async Task<IActionResult> SignOut()
     {
         await Task.Delay(1000);
