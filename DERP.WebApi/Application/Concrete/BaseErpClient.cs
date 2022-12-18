@@ -1,4 +1,4 @@
-﻿using DERP.WebApi.Application.Dtos;
+﻿using DERP.WebApi.Domain.Entities;
 
 namespace DERP.WebApi.Application.Concrete;
 

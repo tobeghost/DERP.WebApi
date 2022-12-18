@@ -80,4 +80,9 @@ public class Customer : MongoBaseEntity
     /// Last date to change password
     /// </summary>
     public DateTime? PasswordChangeDate { get; set; }
+    
+    /// <summary>
+    /// Last erp configuration for clients
+    /// </summary>
+    public ErpConfiguration ErpConfiguration { get; set; }
 }
