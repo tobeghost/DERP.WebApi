@@ -16,7 +16,7 @@ public class ApplicationStartup : IBaseStartup
     
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<HttpRequestHelper>();
+        services.AddTransient<HttpRequestHelper>();
         
         services.AddSingleton(typeof(DerpContext), cfg =>
         {

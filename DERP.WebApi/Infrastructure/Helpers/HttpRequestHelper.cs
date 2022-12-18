@@ -6,19 +6,20 @@ namespace DERP.WebApi.Infrastructure.Helpers;
 
 public class HttpRequestHelper
 {
-    private readonly HttpRequest _httpRequest;
+    private readonly HttpContext _httpContext;
     
-    public HttpRequestHelper(HttpRequest httpRequest)
+    public HttpRequestHelper(IHttpContextAccessor httpContext)
     {
-        _httpRequest = httpRequest;
+        _httpContext = httpContext.HttpContext;
     }
     
     public string GetUsername()
     {
-        if (_httpRequest.Headers.TryGetValue("Authorization", out var authorizationToken))
+        if (_httpContext.Request.Headers.TryGetValue("Authorization", out var authorizationToken))
         {
+            var bearerToken = authorizationToken.ToString().Split(' ').LastOrDefault();
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
-            var jwtToken = jwtSecurityTokenHandler.ReadToken(authorizationToken);
+            var jwtToken = jwtSecurityTokenHandler.ReadToken(bearerToken);
             if (jwtToken is JwtSecurityToken token)
             {
                 var claim = token.Claims.FirstOrDefault(i => i.Type == "Username");
