@@ -95,4 +95,67 @@ public class CustomerService : ICustomerService
         await UpdateCustomerLastLoginDate(customer);
         return "Successful";
     }
+    
+    public virtual async Task<string> RegisterCustomer(Customer customer)
+    {
+        if (string.IsNullOrEmpty(customer.Username))
+        {
+            return "UsernameIsNotProvided";
+        }
+        
+        if (string.IsNullOrWhiteSpace(customer.Password))
+        {
+            return "PasswordIsNotProvided";
+        }
+        
+        if (await GetCustomerByUsername(customer.Username) != null)
+        {
+            return "UsernameAlreadyExists";
+        }
+
+        switch (customer.PasswordFormat)
+        {
+            case PasswordFormat.Clear:
+                {
+                    customer.Password = customer.Password;
+                }
+                break;
+            case PasswordFormat.Encrypted:
+                {
+                    customer.Password = _encryptionService.EncryptText(customer.Password);
+                }
+                break;
+            case PasswordFormat.Hashed:
+                {
+                    string saltKey = _encryptionService.CreateSaltKey(5);
+                    customer.PasswordSalt = saltKey;
+                    customer.Password = _encryptionService.CreatePasswordHash(customer.Password, saltKey, _customerSettings.HashedPasswordFormat);
+                }
+                break;
+            default:
+                break;
+        }
+
+        await _derpContext.Customer.InsertOneAsync(customer);
+
+        return "Successful";
+    }
+    
+    public virtual async Task UpdateActive(string customerId, bool status)
+    {
+        var builder = Builders<Customer>.Filter;
+        var filter = builder.Eq(x => x.Id, customerId);
+
+        var update = Builders<Customer>.Update.Set(x => x.Active, status);
+
+        await _derpContext.Customer.UpdateOneAsync(filter, update);
+    }
+    
+    public virtual Task<Customer> GetCustomerById(string customerId)
+    {
+        if (string.IsNullOrWhiteSpace(customerId))
+            return Task.FromResult<Customer>(null);
+
+        return _derpContext.Customer.Find(x=> x.Id == customerId).FirstOrDefaultAsync();
+    }
 }

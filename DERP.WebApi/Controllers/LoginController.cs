@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using DERP.Services.Abstract;
 using DERP.WebApi.Domain.Dtos.Login;
+using DERP.WebApi.Domain.Entities;
+using DERP.WebApi.Domain.Enums;
 using DERP.WebApi.Infrastructure.Configuration;
 using DERP.WebApi.Jwt;
 using Microsoft.AspNetCore.Authorization;

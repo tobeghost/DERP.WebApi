@@ -52,11 +52,6 @@ public class Customer : MongoBaseEntity
     public DateTime? CannotLoginUntilDate { get; set; }
 
     /// <summary>
-    /// Gets or sets the customer system name
-    /// </summary>
-    public string SystemName { get; set; }
-
-    /// <summary>
     /// Gets or sets the last IP address
     /// </summary>
     public string LastIpAddress { get; set; }
