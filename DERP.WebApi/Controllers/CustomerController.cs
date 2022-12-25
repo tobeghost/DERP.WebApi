@@ -19,29 +19,8 @@ public class CustomerController : BaseController
         _customerService = customerService;
     }
 
-    [HttpPost("Create")]
-    public async Task<IActionResult> CreateCustomer(CreateCustomerRequest createCustomerRequest)
-    {
-        var username = _httpRequestHelper.GetUsername();
-        var customer = await _customerService.GetCustomerByUsername(username);
-        
-        var client = customer.GetClient();
-        if (client != null)
-        {
-            await client.CreateCustomer(createCustomerRequest);
-        }
-        
-        return Ok();
-    }
-
     [HttpGet("Detail")]
     public async Task<IActionResult> GetCustomer(string customerId)
-    {
-        return Ok();
-    }
-
-    [HttpDelete("Delete")]
-    public async Task<IActionResult> DeleteCustomer(string customerId)
     {
         return Ok();
     }
@@ -51,6 +30,15 @@ public class CustomerController : BaseController
     public async Task<IActionResult> FilterCustomers(CustomerFilterRequest customerFilterRequest)
     {
         var username = _httpRequestHelper.GetUsername();
+
+        var customer = await _customerService.GetCustomerByUsername(username);
+
+        var client = customer.GetClient();
+        if (client != null)
+        {
+            var data = await client.FilterCustomers(customerFilterRequest);
+            return Ok(data);
+        }
 
         return Ok();
     }
